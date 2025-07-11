@@ -124,7 +124,6 @@ body {
   color: #222;
   text-align: center;
   font-size: 1rem;
-  padding: 0.3rem 0;
 }
 .custom-header {
   display: flex;
@@ -245,6 +244,6 @@ body {
 }
 @media (min-width: 901px) {
   .sidebar-menu, .sidebar-overlay {
-    display: none !important;
+    /* display: none !important; */
   }
 }

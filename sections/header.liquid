@@ -1,25 +1,74 @@
 <!-- Announcement Bar -->
-{% if section.settings.show_announcement_bar %}
-<div class="announcement-bar">
-  {% for block in section.blocks %} 
-    <div class="announcement-bar-text">
-      {{ block.settings.text }}
+{% assign block_count = section.blocks.size %}
+{% if block_count > 0 %}
+  <div class="announcement-bar">
+    <div class="announcement-bar__slider"{% if block_count > 1 %} data-has-slider="true"{% endif %}>
+      {% for block in section.blocks %}
+        <div class="announcement-bar-text">
+          {{ block.settings.text }}
+        </div>
+      {% endfor %}
     </div>
-  {% endfor %}
-</div>
+  </div>
+  {% if block_count > 1 %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var slider = document.querySelector('.announcement-bar__slider[data-has-slider="true"]');
+        if (slider && typeof jQuery !== 'undefined' && typeof jQuery(slider).slick === 'function') {
+          {% if section.settings.announcement_autoplay %}
+            jQuery(slider).slick({
+              autoplay: true,
+              arrows: {{ section.settings.announcement_show_arrows | default: true | json }},
+              dots: false,
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              adaptiveHeight: true,
+              infinite: true,
+              speed: {{ section.settings.announcement_speed | default: 500 }},
+              autoplaySpeed: {{ section.settings.announcement_autoplay_speed | default: 3000 }}
+            });
+          {% else %}
+            jQuery(slider).slick({
+              arrows: {{ section.settings.announcement_show_arrows | default: true | json }},
+              dots: false,
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              adaptiveHeight: true,
+              infinite: true,
+              speed: {{ section.settings.announcement_speed | default: 500 }},
+              autoplaySpeed: {{ section.settings.announcement_autoplay_speed | default: 3000 }}
+            });
+          {% endif %}
+        }
+      });
+    </script>
+  {% endif %}
 {% endif %}
 
 <header class="custom-header">
   <div class="header-left">
     <button class="hamburger" aria-label="Open menu">&#9776;</button>
     <nav class="main-nav">
-      <a href="/collections/all">Product Categories</a>
-      <a href="/collections/shop-by-concern">Shop by Concern</a>
+      {% for block in section.blocks %}
+        {% if block.type == 'menu_item' %}
+          <a href="{{ block.settings.menu_item_link }}">{{ block.settings.menu_item_text }}</a>
+        {% endif %}
+      {% endfor %}
     </nav>
   </div>
   <div class="header-center">
     <a href="{{ routes.root_url }}" class="logo">
-      <span>zinga</span><br/><span>vita</span>
+      {% if settings.logo_image != blank %}
+        <img
+          src="{{ settings.logo_image | image_url: width: settings.logo_width }}"
+          alt="{{ shop.name }}"
+          style="width: {{ settings.logo_width }}px; max-width: 100%; height: auto;"
+          width="{{ settings.logo_width }}"
+          height="auto"
+        >
+      {% else %}
+        <span>zinga</span><br/><span>vita</span>
+      {% endif %}
     </a>
   </div>
   <div class="header-right">
@@ -40,12 +89,20 @@
 <!-- Sidebar Menu for Mobile -->
 <div id="sidebar-overlay" class="sidebar-overlay"></div>
 <aside id="sidebar-menu" class="sidebar-menu">
-  <button id="close-sidebar" class="close-sidebar" aria-label="Close menu">&times;</button>
-  <nav class="sidebar-nav">
-    <a href="/collections/all">Product Categories</a>
-    <a href="/collections/shop-by-concern">Shop by Concern</a>
-    <!-- Add more links as needed -->
-  </nav>
+  <div class="cover_drawer">
+    <button id="close-sidebar" class="close-sidebar" aria-label="Close menu">&times;</button>
+    <nav class="sidebar-nav">
+      {% for link in linklists[section.settings.menu].links %}
+        <a href="{{ link.url }}" class="{% if link.active %}active{% endif %}">
+          {{ link.title }}
+          {% if link.active %}
+            <span class="selected-html">
+            </span>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </nav>
+  </div>
 </aside>
 
 {% stylesheet %}
@@ -54,7 +111,6 @@
   color: #222;
   text-align: center;
   font-size: 1rem;
-  padding: 0.3rem 0;
 }
 .custom-header {
   display: flex;
@@ -128,7 +184,7 @@
 .sidebar-menu {
   position: fixed;
   top: 0; left: 0;
-  width: 260px;
+  width: 380px;
   height: 100%;
   background: #fff;
   box-shadow: 2px 0 8px rgba(0,0,0,0.08);
@@ -157,6 +213,65 @@
   text-decoration: none;
   font-size: 1.1rem;
 }
+.sidebar-nav a.active {
+  color: #007bff;
+  font-weight: bold;
+  border-left: 3px solid #007bff;
+  background: #f0f4ff;
+  display: flex;
+  align-items: center;
+}
+.selected-html {
+  margin-left: 8px;
+  color: #007bff;
+}
+.sidebar-menu .cover_drawer{
+  position: relative;
+}
+.sidebar-menu .cover_drawer .close-sidebar{
+  position: absolute;
+  margin-bottom: 0;
+  right: 0;
+  top: -40px;
+  height: auto;
+  line-height: initial;
+}
+.sidebar-menu .cover_drawer .sidebar-nav a{
+  margin: 0;
+  display: block;
+  background: transparent;
+  border: none;
+  color: #000;
+  padding-bottom: 12px;
+}
+.sidebar-menu{
+  padding-top: 50px;
+}
+html body .shopify-section-group-header-group .announcement-bar .announcement-bar__slider .slick-arrow{
+  z-index: 2;
+}
+html body .shopify-section-group-header-group .announcement-bar .announcement-bar__slider .slick-prev.slick-arrow{
+  left:-40px;
+  color:#222;
+  width: auto;
+  height: auto;
+}
+html body .shopify-section-group-header-group .announcement-bar .announcement-bar__slider .slick-prev.slick-arrow:before,
+html body .shopify-section-group-header-group .announcement-bar .announcement-bar__slider .slick-next.slick-arrow:before{
+  color:#222;
+  font-size: 28px;
+}
+html body .shopify-section-group-header-group .announcement-bar .announcement-bar__slider .slick-next.slick-arrow{
+  right:-40px;
+  color:#222;
+  width: auto;
+  height: auto;
+}
+html body .shopify-section-group-header-group .announcement-bar .announcement-bar__slider{
+  padding:13px 0;
+  max-width: 100%;
+  margin: 0px 70px;
+}
 @media (max-width: 900px) {
   .custom-header {
     flex-direction: column;
@@ -175,7 +290,7 @@
 }
 @media (min-width: 901px) {
   .sidebar-menu, .sidebar-overlay {
-    display: none !important;
+    /* display: none !important; */
   }
 }
 {% endstylesheet %}
@@ -194,6 +309,36 @@
       "id": "show_announcement_bar",
       "label": "Show Announcement Bar",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "announcement_autoplay",
+      "label": "Auto-rotate slides",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "announcement_show_arrows",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "announcement_speed",
+      "label": "Slide transition speed (ms)",
+      "min": 100,
+      "max": 5000,
+      "step": 100,
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "announcement_autoplay_speed",
+      "label": "Autoplay delay (ms)",
+      "min": 1000,
+      "max": 5000,
+      "step": 500,
+      "default": 3000
     }
   ],
   "blocks": [
@@ -207,7 +352,46 @@
           "label": "Text"
         }
       ]
+    },
+    {
+      "type": "menu_item",
+      "name":"add menu item",
+      "limit": 2,
+      "settings":[
+        {
+          "type": "text",
+          "id": "menu_item_text",
+          "label": "Enter menu item text"
+        },
+        {
+          "type": "url",
+          "id": "menu_item_link",
+          "label": "Select Menu item link"
+        }
+      ]
     }
   ]
 }
 {% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var hamburger = document.querySelector('.hamburger');
+    var sidebar = document.getElementById('sidebar-menu');
+    var overlay = document.getElementById('sidebar-overlay');
+    var closeBtn = document.getElementById('close-sidebar');
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      overlay.classList.add('active');
+    }
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    }
+
+    if (hamburger) hamburger.addEventListener('click', openSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (overlay) overlay.addEventListener('click', closeSidebar);
+  });
+</script>

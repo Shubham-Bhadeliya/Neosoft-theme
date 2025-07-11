@@ -1,23 +1,18 @@
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}">
   <head>
-    {% # Inlined CSS Variables %}
     {% render 'css-variables' %}
-
-    {% # Load and preload the critical CSS %}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
-
-    {% # Social, title, etc. %}
+    {{ 'slick.min.css' | asset_url | stylesheet_tag }}
+    {{ 'slick-theme.min.css' | asset_url | stylesheet_tag }}
     {% render 'meta-tags' %}
-
     {{ content_for_header }}
   </head>
-
   <body>
     {% sections 'header-group' %}
-
     {{ content_for_layout }}
-
     {% sections 'footer-group' %}
+    <script src="{{ 'jquery-3-7-1.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'slick.min.js' | asset_url }}" defer></script>
   </body>
 </html>

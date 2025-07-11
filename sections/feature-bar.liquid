@@ -1,0 +1,112 @@
+<div class="feature-bar">
+  {% for block in section.blocks %}
+    <div class="feature-item">
+      {% if block.settings.icon != blank %}
+        <img src="{{ block.settings.icon | image_url: width: 64 }}" alt="{{ block.settings.heading | escape }}" class="feature-icon" width="64" height="64" />
+      {% endif %}
+      <div class="feature-content">
+        <div class="feature-heading">{{ block.settings.heading }}</div>
+        <div class="feature-subtext">{{ block.settings.subtext }}</div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<style>
+.feature-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  background: #cfddeb;
+  padding: 2rem 0;
+  gap: 2rem;
+}
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 250px;
+  text-align: center;
+}
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1rem;
+}
+.feature-heading {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.feature-subtext {
+  color: #444;
+  font-size: 1rem;
+}
+@media (max-width: 900px) {
+  .feature-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Feature Bar",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Feature Heading"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subtext",
+          "default": "Feature subtext"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Bar",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "Cash On Delivery",
+            "subtext": "For purchase of ₹349/- and more"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "Free Shipping",
+            "subtext": "For purchase of ₹399/- and more"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "24/7 Customer Support",
+            "subtext": "For purchase of ₹399/- and more"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} 

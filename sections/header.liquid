@@ -1,55 +1,183 @@
-<header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
+<!-- Announcement Bar -->
+{% if section.settings.show_announcement_bar %}
+<div class="announcement-bar">
+  {% for block in section.blocks %} 
+    <div class="announcement-bar-text">
+      {{ block.settings.text }}
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
 
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
+<header class="custom-header">
+  <div class="header-left">
+    <button class="hamburger" aria-label="Open menu">&#9776;</button>
+    <nav class="main-nav">
+      <a href="/collections/all">Product Categories</a>
+      <a href="/collections/shop-by-concern">Shop by Concern</a>
+    </nav>
   </div>
-
-  <div class="header__icons">
-    {% if shop.customer_accounts_enabled %}
-      {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
-    {% endif %}
-
-    <a href="{{ routes.cart_url }}">
-      {% if cart.item_count > 0 %}
-        <sup>{{ cart.item_count }}</sup>
-      {% endif %}
-
+  <div class="header-center">
+    <a href="{{ routes.root_url }}" class="logo">
+      <span>zinga</span><br/><span>vita</span>
+    </a>
+  </div>
+  <div class="header-right">
+    <form action="{{ routes.search_url }}" method="get" class="search-form">
+      <input type="search" name="q" placeholder="Search for Weight Management..." aria-label="Search" />
+    </form>
+    <a href="{{ routes.cart_url }}" class="icon-link">
       {{ 'icon-cart.svg' | inline_asset_content }}
     </a>
+    {% if shop.customer_accounts_enabled %}
+      <a href="{{ routes.account_url }}" class="icon-link">
+        {{ 'icon-account.svg' | inline_asset_content }}
+      </a>
+    {% endif %}
   </div>
 </header>
 
+<!-- Sidebar Menu for Mobile -->
+<div id="sidebar-overlay" class="sidebar-overlay"></div>
+<aside id="sidebar-menu" class="sidebar-menu">
+  <button id="close-sidebar" class="close-sidebar" aria-label="Close menu">&times;</button>
+  <nav class="sidebar-nav">
+    <a href="/collections/all">Product Categories</a>
+    <a href="/collections/shop-by-concern">Shop by Concern</a>
+    <!-- Add more links as needed -->
+  </nav>
+</aside>
+
 {% stylesheet %}
-  header {
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.announcement-bar {
+  background: #cfd5cd;
+  color: #222;
+  text-align: center;
+  font-size: 1rem;
+  padding: 0.3rem 0;
+}
+.custom-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 0.5rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+}
+.header-left, .header-center, .header-right {
+  display: flex;
+  align-items: center;
+}
+.header-left {
+  gap: 1.5rem;
+}
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+.main-nav a {
+  margin-right: 1.5rem;
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+}
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+  text-align: center;
+  line-height: 1;
+  text-decoration: none;
+}
+.header-center {
+  flex: 1;
+  justify-content: center;
+}
+.header-right {
+  gap: 1rem;
+}
+.search-form input[type="search"] {
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  border: 1px solid #ccc;
+  min-width: 220px;
+}
+.icon-link {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+.icon-link svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: opacity 0.2s;
+}
+.sidebar-overlay.active {
+  display: block;
+}
+.sidebar-menu {
+  position: fixed;
+  top: 0; left: 0;
+  width: 260px;
+  height: 100%;
+  background: #fff;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+  transform: translateX(-100%);
+  transition: transform 0.2s;
+  z-index: 1100;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-menu.open {
+  transform: translateX(0);
+}
+.close-sidebar {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  align-self: flex-end;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+.sidebar-nav a {
+  display: block;
+  margin: 1rem 0;
+  color: #222;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+@media (max-width: 900px) {
+  .custom-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.5rem 1rem;
   }
-  header a {
-    position: relative;
-    text-decoration: none;
-    color: var(--color-foreground);
+  .header-center {
+    margin: 0.5rem 0;
   }
-  header a sup {
-    position: absolute;
-    left: 100%;
-    overflow: hidden;
-    max-width: var(--page-margin);
+  .main-nav {
+    display: none; /* You can add JS to toggle this for mobile */
   }
-  header svg {
-    width: 2rem;
+  .sidebar-menu, .sidebar-overlay {
+    display: block;
   }
-  header .header__menu,
-  header .header__icons {
-    display: flex;
-    gap: 1rem;
+}
+@media (min-width: 901px) {
+  .sidebar-menu, .sidebar-overlay {
+    display: none !important;
   }
+}
 {% endstylesheet %}
 
 {% schema %}
@@ -60,6 +188,25 @@
       "type": "link_list",
       "id": "menu",
       "label": "t:labels.menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement_bar",
+      "label": "Show Announcement Bar",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement_bar",
+      "name": "Announcement Bar",
+      "settings": [
+        {
+          "type": "text", 
+          "id": "text",
+          "label": "Text"
+        }
+      ]
     }
   ]
 }

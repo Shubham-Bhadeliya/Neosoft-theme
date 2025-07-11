@@ -1,0 +1,42 @@
+<div class="icon-text-section_cover">
+    {% for block in section.blocks %}
+    <div class="icon-text-single">
+        <div class="icon-text-single_icon">
+            {{ block.settings.icon | image_url: width: 100 | image_tag }}
+        </div>
+        <div class="icon-text-single_text">
+            {{ block.settings.text }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% schema %}
+{
+    "name": "Icon Text Section",
+    "class": "icon-text-section",
+    "settings": [],
+    "blocks": [
+        {
+            "type": "icon_text",
+            "name": "Icon Text",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "icon",
+                    "label": "Icon"
+                },
+                {
+                    "type": "text",
+                    "id": "text",
+                    "label": "Text"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Icon Text Section"
+        }
+    ]
+}
+{% endschema %}

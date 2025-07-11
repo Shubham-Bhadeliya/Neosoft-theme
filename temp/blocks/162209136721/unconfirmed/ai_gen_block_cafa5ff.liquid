@@ -1,6 +1,686 @@
+{% doc %}
+  @prompt
+    A magazine-style editorial layout
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .magazine-editorial-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns }}, 1fr);
+    gap: {{ block.settings.gap }}px;
+    padding: {{ block.settings.padding }}px;
+    background-color: {{ block.settings.background_color }};
+    max-width: 100%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .magazine-editorial-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+      gap: {{ block.settings.gap | divided_by: 2 }}px;
+      padding: {{ block.settings.padding | divided_by: 2 }}px;
+    }
+  }
+
+  .magazine-editorial__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: {{ block.settings.title_weight }};
+    color: {{ block.settings.title_color }};
+    margin-top: 0;
+    margin-bottom: {{ block.settings.title_spacing }}px;
+    line-height: 1.2;
+    grid-column: 1 / -1;
+    {% if block.settings.title_alignment == 'center' %}
+      text-align: center;
+    {% elsif block.settings.title_alignment == 'right' %}
+      text-align: right;
+    {% endif %}
+  }
+
+  .magazine-editorial__subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    font-weight: 500;
+    color: {{ block.settings.subtitle_color }};
+    margin-top: 0;
+    margin-bottom: {{ block.settings.subtitle_spacing }}px;
+    grid-column: 1 / -1;
+    {% if block.settings.title_alignment == 'center' %}
+      text-align: center;
+    {% elsif block.settings.title_alignment == 'right' %}
+      text-align: right;
+    {% endif %}
+  }
+
+  .magazine-editorial__content-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: {{ block.settings.gap }}px;
+  }
+
+  .magazine-editorial__image-container-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: {{ block.settings.image_spacing }}px;
+  }
+
+  .magazine-editorial__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    {% if block.settings.image_style == 'rounded' %}
+      border-radius: 8px;
+    {% elsif block.settings.image_style == 'circle' %}
+      border-radius: 50%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    {% endif %}
+  }
+
+  .magazine-editorial__placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    {% if block.settings.image_style == 'rounded' %}
+      border-radius: 8px;
+    {% elsif block.settings.image_style == 'circle' %}
+      border-radius: 50%;
+      aspect-ratio: 1/1;
+    {% endif %}
+  }
+
+  .magazine-editorial__placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+  }
+
+  .magazine-editorial__caption-{{ ai_gen_id }} {
+    font-size: {{ block.settings.caption_size }}px;
+    color: {{ block.settings.caption_color }};
+    font-style: italic;
+    margin-top: 8px;
+    margin-bottom: 16px;
+  }
+
+  .magazine-editorial__text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.6;
+    color: {{ block.settings.text_color }};
+  }
+
+  .magazine-editorial__text-{{ ai_gen_id }} p {
+    margin-bottom: 1em;
+  }
+
+  .magazine-editorial__text-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  .magazine-editorial__byline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.byline_size }}px;
+    color: {{ block.settings.byline_color }};
+    margin-top: {{ block.settings.byline_spacing }}px;
+    font-style: italic;
+  }
+
+  .magazine-editorial__column-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .magazine-editorial__quote-{{ ai_gen_id }} {
+    font-size: {{ block.settings.quote_size }}px;
+    line-height: 1.4;
+    color: {{ block.settings.quote_color }};
+    font-style: italic;
+    padding: 20px;
+    border-left: 4px solid {{ block.settings.quote_accent_color }};
+    background-color: {{ block.settings.quote_background }};
+    margin: 20px 0;
+  }
+
+  .magazine-editorial__dropcap-{{ ai_gen_id }} .first-letter {
+    float: left;
+    font-size: {{ block.settings.dropcap_size }}px;
+    line-height: 0.8;
+    margin-right: 8px;
+    color: {{ block.settings.dropcap_color }};
+    font-weight: bold;
+  }
+
+  .magazine-editorial__divider-{{ ai_gen_id }} {
+    height: 1px;
+    background-color: {{ block.settings.divider_color }};
+    margin: 20px 0;
+    grid-column: 1 / -1;
+  }
+
+  {% if block.settings.layout == 'featured' %}
+    .magazine-editorial__featured-{{ ai_gen_id }} {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: {{ block.settings.gap }}px;
+      align-items: start;
+    }
+
+    @media screen and (max-width: 749px) {
+      .magazine-editorial__featured-{{ ai_gen_id }} {
+        grid-template-columns: 1fr;
+      }
+    }
+  {% endif %}
+{% endstyle %}
+
+<div class="magazine-editorial-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.title != blank %}
+    <h2 class="magazine-editorial__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+  {% endif %}
+
+  {% if block.settings.subtitle != blank %}
+    <h3 class="magazine-editorial__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</h3>
+  {% endif %}
+
+  {% if block.settings.layout == 'featured' %}
+    <div class="magazine-editorial__featured-{{ ai_gen_id }}">
+      <div class="magazine-editorial__column-{{ ai_gen_id }}">
+        <div class="magazine-editorial__image-container-{{ ai_gen_id }}">
+          {% if block.settings.main_image %}
+            <img 
+              src="{{ block.settings.main_image | image_url: width: 1000 }}"
+              alt="{{ block.settings.main_image.alt | escape }}"
+              width="{{ block.settings.main_image.width }}"
+              height="{{ block.settings.main_image.height }}"
+              loading="lazy"
+              class="magazine-editorial__image-{{ ai_gen_id }}"
+            >
+          {% else %}
+            <div class="magazine-editorial__placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+          
+          {% if block.settings.caption != blank %}
+            <div class="magazine-editorial__caption-{{ ai_gen_id }}">{{ block.settings.caption }}</div>
+          {% endif %}
+        </div>
+      </div>
+      
+      <div class="magazine-editorial__column-{{ ai_gen_id }}">
+        {% if block.settings.use_dropcap %}
+          <div class="magazine-editorial__text-{{ ai_gen_id }} magazine-editorial__dropcap-{{ ai_gen_id }}">
+            {% if block.settings.main_text != blank %}
+              {% assign first_char = block.settings.main_text | strip | slice: 0 %}
+              {% assign rest_text = block.settings.main_text | strip | slice: 1, block.settings.main_text.size %}
+              <span class="first-letter">{{ first_char }}</span>{{ rest_text }}
+            {% endif %}
+          </div>
+        {% else %}
+          <div class="magazine-editorial__text-{{ ai_gen_id }}">
+            {{ block.settings.main_text }}
+          </div>
+        {% endif %}
+        
+        {% if block.settings.quote != blank %}
+          <div class="magazine-editorial__quote-{{ ai_gen_id }}">
+            {{ block.settings.quote }}
+          </div>
+        {% endif %}
+        
+        {% if block.settings.byline != blank %}
+          <div class="magazine-editorial__byline-{{ ai_gen_id }}">{{ block.settings.byline }}</div>
+        {% endif %}
+      </div>
+    </div>
+  {% else %}
+    <div class="magazine-editorial__content-{{ ai_gen_id }}">
+      <div class="magazine-editorial__image-container-{{ ai_gen_id }}">
+        {% if block.settings.main_image %}
+          <img 
+            src="{{ block.settings.main_image | image_url: width: 1000 }}"
+            alt="{{ block.settings.main_image.alt | escape }}"
+            width="{{ block.settings.main_image.width }}"
+            height="{{ block.settings.main_image.height }}"
+            loading="lazy"
+            class="magazine-editorial__image-{{ ai_gen_id }}"
+          >
+        {% else %}
+          <div class="magazine-editorial__placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+        
+        {% if block.settings.caption != blank %}
+          <div class="magazine-editorial__caption-{{ ai_gen_id }}">{{ block.settings.caption }}</div>
+        {% endif %}
+      </div>
+      
+      {% if block.settings.use_dropcap %}
+        <div class="magazine-editorial__text-{{ ai_gen_id }} magazine-editorial__dropcap-{{ ai_gen_id }}">
+          {% if block.settings.main_text != blank %}
+            {% assign first_char = block.settings.main_text | strip | slice: 0 %}
+            {% assign rest_text = block.settings.main_text | strip | slice: 1, block.settings.main_text.size %}
+            <span class="first-letter">{{ first_char }}</span>{{ rest_text }}
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="magazine-editorial__text-{{ ai_gen_id }}">
+          {{ block.settings.main_text }}
+        </div>
+      {% endif %}
+      
+      {% if block.settings.quote != blank %}
+        <div class="magazine-editorial__quote-{{ ai_gen_id }}">
+          {{ block.settings.quote }}
+        </div>
+      {% endif %}
+      
+      {% if block.settings.byline != blank %}
+        <div class="magazine-editorial__byline-{{ ai_gen_id }}">{{ block.settings.byline }}</div>
+      {% endif %}
+    </div>
+  {% endif %}
+  
+  {% if block.settings.show_divider %}
+    <div class="magazine-editorial__divider-{{ ai_gen_id }}"></div>
+  {% endif %}
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Magazine Editorial",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout style",
+      "options": [
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "featured",
+          "label": "Featured (image left, text right)"
+        }
+      ],
+      "default": "featured"
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns (mobile)",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Gap between elements",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Editorial Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "A compelling subtitle that draws readers in"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main image"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Image caption",
+      "default": "Image caption goes here"
+    },
+    {
+      "type": "richtext",
+      "id": "main_text",
+      "label": "Main text",
+      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p><p>Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "quote",
+      "label": "Quote (optional)",
+      "default": "<p>\"This is a compelling pull quote that highlights an important point from the article.\"</p>"
+    },
+    {
+      "type": "text",
+      "id": "byline",
+      "label": "Byline",
+      "default": "By Author Name"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_dropcap",
+      "label": "Use drop cap for first letter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider at bottom",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Title alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 42
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Title bottom spacing",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "subtitle_spacing",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Subtitle bottom spacing",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "caption_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Caption size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "quote_size",
+      "min": 16,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "label": "Quote size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "byline_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Byline size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "byline_spacing",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Byline top spacing",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "dropcap_size",
+      "min": 30,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Drop cap size",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "image_spacing",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Image bottom spacing",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#4A4A4A"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "Caption color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "quote_color",
+      "label": "Quote text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "quote_accent_color",
+      "label": "Quote accent color",
+      "default": "#000f9f"
+    },
+    {
+      "type": "color",
+      "id": "quote_background",
+      "label": "Quote background color",
+      "default": "#F9F9F9"
+    },
+    {
+      "type": "color",
+      "id": "byline_color",
+      "label": "Byline color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "dropcap_color",
+      "label": "Drop cap color",
+      "default": "#000f9f"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#E0E0E0"
+    },
+    {
+      "type": "header",
+      "content": "Image Style"
+    },
+    {
+      "type": "select",
+      "id": "image_style",
+      "label": "Image style",
+      "options": [
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "rounded",
+          "label": "Rounded"
+        },
+        {
+          "value": "circle",
+          "label": "Circle"
+        }
+      ],
+      "default": "rounded"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Magazine Editorial"
+    }
+  ]
+}
 {% endschema %}

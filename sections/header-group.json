@@ -13,10 +13,51 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "blocks": {
+        "announcement_bar_naNMew": {
+          "type": "announcement_bar",
+          "settings": {
+            "text": "Explore our new Zingavita Ayurveda line"
+          }
+        },
+        "announcement_bar_AVxq7c": {
+          "type": "announcement_bar",
+          "settings": {
+            "text": "Explore our new Zingavita Ayurveda line"
+          }
+        },
+        "menu_item_8JBDCj": {
+          "type": "menu_item",
+          "settings": {
+            "menu_item_text": "Product Categories",
+            "menu_item_link": "#"
+          }
+        },
+        "menu_item_Yx4qVT": {
+          "type": "menu_item",
+          "settings": {
+            "menu_item_text": "Shop by Concern",
+            "menu_item_link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "announcement_bar_naNMew",
+        "announcement_bar_AVxq7c",
+        "menu_item_8JBDCj",
+        "menu_item_Yx4qVT"
+      ],
+      "settings": {
+        "menu": "main-menu",
+        "show_announcement_bar": true,
+        "announcement_autoplay": true,
+        "announcement_show_arrows": true,
+        "announcement_speed": 500,
+        "announcement_autoplay_speed": 3000
+      }
     }
   },
   "order": [
     "header"
-  ],
+  ]
 }

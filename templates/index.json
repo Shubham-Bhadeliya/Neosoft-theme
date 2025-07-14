@@ -19,37 +19,30 @@
         "slide_wiLpN7": {
           "type": "slide",
           "settings": {
-            "background_image": "shopify://shop_images/SM322305.png",
+            "background_image_desktop": "shopify://shop_images/SM322305.png",
+            "background_image_mobile": "shopify://shop_images/SM322305.png",
             "heading": "Adding zing to your vital nutrition",
             "subtext": "Sugar-free • All-natural • Expert-formulated • GMP certified",
             "button_text": "Know More",
             "button_link": ""
           }
         },
-        "slide_nmdXJD": {
+        "slide_Vz9FY4": {
           "type": "slide",
           "settings": {
-            "background_image": "shopify://shop_images/SM322305.png",
+            "background_image_desktop": "shopify://shop_images/SM322305.png",
+            "background_image_mobile": "shopify://shop_images/SM322305.png",
             "heading": "Adding zing to your vital nutrition",
             "subtext": "Sugar-free • All-natural • Expert-formulated • GMP certified",
             "button_text": "Know More",
             "button_link": ""
           }
         },
-        "slide_EiKCae": {
+        "slide_8KWxbY": {
           "type": "slide",
           "settings": {
-            "background_image": "shopify://shop_images/SM322305.png",
-            "heading": "Adding zing to your vital nutrition",
-            "subtext": "Sugar-free • All-natural • Expert-formulated • GMP certified",
-            "button_text": "Know More",
-            "button_link": ""
-          }
-        },
-        "slide_xwtD7g": {
-          "type": "slide",
-          "settings": {
-            "background_image": "shopify://shop_images/SM322305.png",
+            "background_image_desktop": "shopify://shop_images/SM322305.png",
+            "background_image_mobile": "shopify://shop_images/SM322305.png",
             "heading": "Adding zing to your vital nutrition",
             "subtext": "Sugar-free • All-natural • Expert-formulated • GMP certified",
             "button_text": "Know More",
@@ -59,9 +52,8 @@
       },
       "block_order": [
         "slide_wiLpN7",
-        "slide_nmdXJD",
-        "slide_EiKCae",
-        "slide_xwtD7g"
+        "slide_Vz9FY4",
+        "slide_8KWxbY"
       ],
       "name": "Hero Slider",
       "settings": {

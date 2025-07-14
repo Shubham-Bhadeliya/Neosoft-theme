@@ -101,9 +101,16 @@
 
 <div class="giving-back-section {% if section.settings.image_position == 'right' %}reverse{% endif %}">
   <div class="giving-back-image">
-    {% if section.settings.section_image != blank %}
-      <img src="{{ section.settings.section_image | image_url: width: 800 }}" alt="Main Section Image">
-    {% endif %}
+   <div class="giving-back-image">
+  {% if section.settings.section_image != blank %}
+    <img src="{{ section.settings.section_image | image_url: width: 800 }}" alt="Main Section Image">
+  {% else %}
+    <div style="width: 100%; aspect-ratio: 4/3; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #aaa; border: 1px dashed #ccc;">
+      No Image Selected
+    </div>
+  {% endif %}
+</div>
+
   </div>
 
   <div class="giving-back-content">

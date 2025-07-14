@@ -5,17 +5,22 @@
     {
       "type": "image_picker",
       "id": "section_image",
-      "label": "Section Image"
+      "label": "Main Section Image"
     },
     {
       "type": "select",
       "id": "image_position",
-      "label": "Image Position",
+      "label": "Image Position (Desktop)",
       "options": [
         { "value": "left", "label": "Left" },
         { "value": "right", "label": "Right" }
       ],
       "default": "left"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_image",
+      "label": "Small Icon beside Heading"
     },
     {
       "type": "text",
@@ -53,46 +58,87 @@
   justify-content: center;
   background-color: #f4f6f5;
   padding: 40px 20px;
+  gap: 20px;
 }
+
 .giving-back-section.reverse {
   flex-direction: row-reverse;
 }
+
 .giving-back-image,
 .giving-back-content {
   flex: 1 1 50%;
   max-width: 50%;
   padding: 20px;
 }
+
 .giving-back-image img {
   width: 100%;
   height: auto;
   border-radius: 8px;
 }
-.giving-back-content h2 {
+
+.giving-back-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.giving-back-heading img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.giving-back-heading h2 {
   font-size: 28px;
   font-weight: 700;
   color: #222;
-  margin-bottom: 15px;
+  margin: 0;
 }
+
 .giving-back-content p {
   font-size: 16px;
   color: #333;
   line-height: 1.6;
   margin-bottom: 15px;
 }
+
 .giving-back-content .highlight {
   font-weight: 600;
   color: #000;
 }
+
+/* ✅ Mobile View */
 @media (max-width: 768px) {
   .giving-back-section,
   .giving-back-section.reverse {
-    flex-direction: column;
+    flex-direction: column !important;
   }
+
   .giving-back-image,
   .giving-back-content {
     max-width: 100%;
     padding: 10px;
+  }
+
+  .giving-back-heading {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .giving-back-heading img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .giving-back-heading h2 {
+    font-size: 22px;
+  }
+
+  .giving-back-content p {
+    font-size: 15px;
   }
 }
 </style>
@@ -100,11 +146,17 @@
 <div class="giving-back-section {% if section.settings.image_position == 'right' %}reverse{% endif %}">
   <div class="giving-back-image">
     {% if section.settings.section_image != blank %}
-      <img src="{{ section.settings.section_image | image_url: width: 800 }}" alt="Giving Back Image">
+      <img src="{{ section.settings.section_image | image_url: width: 800 }}" alt="Main Section Image">
     {% endif %}
   </div>
+
   <div class="giving-back-content">
-    <h2>{{ section.settings.heading }}</h2>
+    <div class="giving-back-heading">
+      {% if section.settings.icon_image != blank %}
+        <img src="{{ section.settings.icon_image | image_url: width: 64 }}" alt="Icon">
+      {% endif %}
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
     <p>{{ section.settings.paragraph }}</p>
     <p class="highlight">{{ section.settings.highlight_text }}</p>
   </div>

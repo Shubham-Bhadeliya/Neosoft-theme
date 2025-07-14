@@ -65,10 +65,46 @@
             "button_link": "",
             "scroll_text": "Scroll Down"
           }
+        },
+        "slide_YNpeQT": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/SM322305.png",
+            "mobile_image": "shopify://shop_images/SM322305.png",
+            "heading": "Slide Heading",
+            "subheading": "sugar free",
+            "label_1": "Sugar free",
+            "icon_2": "shopify://shop_images/shipp-scree-removebg-preview_1092423d-67c1-466d-80a6-c9cd97867ff5.png",
+            "label_2": "",
+            "label_3": "",
+            "label_4": "",
+            "button_label": "Learn More",
+            "button_link": "",
+            "scroll_text": "Scroll Down"
+          }
+        },
+        "slide_W8hkMK": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/SM322305.png",
+            "mobile_image": "shopify://shop_images/SM322305.png",
+            "heading": "Slide Heading",
+            "subheading": "sugar free",
+            "label_1": "Sugar free",
+            "icon_2": "shopify://shop_images/shipp-scree-removebg-preview_1092423d-67c1-466d-80a6-c9cd97867ff5.png",
+            "label_2": "",
+            "label_3": "",
+            "label_4": "",
+            "button_label": "Learn More",
+            "button_link": "",
+            "scroll_text": "Scroll Down"
+          }
         }
       },
       "block_order": [
-        "slide_fJzMYX"
+        "slide_fJzMYX",
+        "slide_YNpeQT",
+        "slide_W8hkMK"
       ],
       "name": "Hero Swiper Slider",
       "settings": {

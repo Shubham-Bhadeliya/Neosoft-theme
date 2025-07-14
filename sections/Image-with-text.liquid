@@ -53,10 +53,11 @@
 <style>
 .giving-back-section {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  background-color: transparent; /* ❌ Removed background */
+  background-color: transparent;
   padding: 40px 20px;
   gap: 20px;
 }
@@ -99,7 +100,7 @@
 }
 
 .giving-back-content {
-  text-align: left; /* ✅ Force left-align */
+  text-align: left;
 }
 
 .giving-back-content p {
@@ -114,10 +115,9 @@
   color: #000;
 }
 
-/* ✅ Mobile View Fixes */
+/* ✅ Mobile Styles */
 @media (max-width: 768px) {
-  .giving-back-section,
-  .giving-back-section.reverse {
+  .giving-back-section {
     flex-direction: column !important;
   }
 
@@ -128,7 +128,7 @@
   }
 
   .giving-back-heading {
-    flex-direction: row-reverse; /* ✅ Icon on right */
+    flex-direction: row-reverse;
     justify-content: space-between;
   }
 
@@ -142,7 +142,7 @@
   }
 
   .giving-back-content {
-    text-align: left; /* ✅ Left align all text */
+    text-align: left;
   }
 
   .giving-back-content p {

@@ -11,39 +11,7 @@
   "sections": {
     "main": {
       "type": "hello-world",
-      "settings": {}
-    },
-    "feature_bar_fMQrkf": {
-      "type": "feature-bar",
-      "blocks": {
-        "feature_6Rtdkx": {
-          "type": "feature",
-          "settings": {
-            "heading": "Cash On Delivery",
-            "subtext": "For purchase of ₹349/- and more"
-          }
-        },
-        "feature_FPemLY": {
-          "type": "feature",
-          "settings": {
-            "heading": "Free Shipping",
-            "subtext": "For purchase of ₹399/- and more"
-          }
-        },
-        "feature_Ufb6Wa": {
-          "type": "feature",
-          "settings": {
-            "heading": "24/7 Customer Support",
-            "subtext": "For purchase of ₹399/- and more"
-          }
-        }
-      },
-      "block_order": [
-        "feature_6Rtdkx",
-        "feature_FPemLY",
-        "feature_Ufb6Wa"
-      ],
-      "name": "Feature Bar",
+      "disabled": true,
       "settings": {}
     },
     "custom_slider_QtrrwT": {
@@ -113,11 +81,73 @@
         "star_icon": "shopify://shop_images/Path_30710_small_5bae3c21-1367-4a8f-820b-c69e3c525bf3.svg",
         "desktop_alignment": "bottom-left"
       }
+    },
+    "featured_collection_zing_yL9zVt": {
+      "type": "featured-collection-zing",
+      "blocks": {
+        "item_mFnY9H": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/5129ed5dca.png",
+            "title": "Gummies"
+          }
+        },
+        "item_jzGC4n": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Effervescent.avif",
+            "title": "Gummies"
+          }
+        }
+      },
+      "block_order": [
+        "item_mFnY9H",
+        "item_jzGC4n"
+      ],
+      "name": "featured-collection-zing",
+      "settings": {
+        "main_heading": "Find your zing",
+        "subheading": ""
+      }
+    },
+    "feature_bar_fMQrkf": {
+      "type": "feature-bar",
+      "blocks": {
+        "feature_6Rtdkx": {
+          "type": "feature",
+          "settings": {
+            "heading": "Cash On Delivery",
+            "subtext": "For purchase of ₹349/- and more"
+          }
+        },
+        "feature_FPemLY": {
+          "type": "feature",
+          "settings": {
+            "heading": "Free Shipping",
+            "subtext": "For purchase of ₹399/- and more"
+          }
+        },
+        "feature_Ufb6Wa": {
+          "type": "feature",
+          "settings": {
+            "heading": "24/7 Customer Support",
+            "subtext": "For purchase of ₹399/- and more"
+          }
+        }
+      },
+      "block_order": [
+        "feature_6Rtdkx",
+        "feature_FPemLY",
+        "feature_Ufb6Wa"
+      ],
+      "name": "Feature Bar",
+      "settings": {}
     }
   },
   "order": [
     "main",
-    "feature_bar_fMQrkf",
-    "custom_slider_QtrrwT"
+    "custom_slider_QtrrwT",
+    "featured_collection_zing_yL9zVt",
+    "feature_bar_fMQrkf"
   ]
 }

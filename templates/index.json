@@ -184,6 +184,7 @@
         "feature_6Rtdkx": {
           "type": "feature",
           "settings": {
+            "icon": "shopify://shop_images/cash-on-delivery_1.svg",
             "heading": "Cash On Delivery",
             "subtext": "For purchase of ₹349/- and more"
           }
@@ -191,6 +192,7 @@
         "feature_FPemLY": {
           "type": "feature",
           "settings": {
+            "icon": "shopify://shop_images/shipp-scree-removebg-preview_1092423d-67c1-466d-80a6-c9cd97867ff5.png",
             "heading": "Free Shipping",
             "subtext": "For purchase of ₹399/- and more"
           }
@@ -198,6 +200,7 @@
         "feature_Ufb6Wa": {
           "type": "feature",
           "settings": {
+            "icon": "shopify://shop_images/24-hours_1.svg",
             "heading": "24/7 Customer Support",
             "subtext": "For purchase of ₹399/- and more"
           }

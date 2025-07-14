@@ -98,11 +98,27 @@
             "image": "shopify://shop_images/Effervescent.avif",
             "title": "Effervescent"
           }
+        },
+        "item_aQW9Lb": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Gummies.avif",
+            "title": "Gummies"
+          }
+        },
+        "item_xFrtqt": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Supplemnets.avif",
+            "title": "Supplements"
+          }
         }
       },
       "block_order": [
         "item_mFnY9H",
-        "item_jzGC4n"
+        "item_jzGC4n",
+        "item_aQW9Lb",
+        "item_xFrtqt"
       ],
       "name": "featured-collection-zing",
       "settings": {

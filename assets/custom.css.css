@@ -1,0 +1,76 @@
+
+.image-with-text .grid__item {
+  background: #d2d7d1;
+}
+
+.announcement-bar-section .utility-bar.color-scheme-1.gradient {
+    background: #f3f2f0;
+    text-decoration: underline;
+}
+
+.button:after {
+  content: "";
+  display: block;
+ 
+}
+
+.collection__view-all a.button {
+    background: none;
+    color: #ed184b;
+    text-decoration: underline;
+     text-underline-offset: 2px;
+    font-size: 19px;
+}
+
+a.know-more-link {
+   color: #ed184b;
+    text-decoration: underline;
+     text-underline-offset: 2px;
+    font-size: 19px;
+}
+
+.button,
+.quick-add__submit {
+  border: none !important;
+}
+
+.button::after {
+  content: none !important;
+  display: none !important;
+  border: none !important;
+}
+
+
+
+.quick-add__submit {
+  border: none;
+  background-color: #ed184b; 
+  color: white; 
+  border-radius: 25px; /* Adjust as needed */
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.section-template--24713579692338__image_with_text_Aq6yAC-padding .page-width {
+    padding: 0px;
+}
+
+
+@media (max-width: 768px) {
+.health-cart-section .subheading{
+  width:auto!important;
+}
+
+  .health-cart-section .subheading {
+    margin-top: -12px;
+}
+
+  .health-cart-section .heading {
+    font-size: 30px!important;
+}
+
+  .zing-arrow-btn, .circle-left-indicator {
+    display: block!important;
+}
+
+}

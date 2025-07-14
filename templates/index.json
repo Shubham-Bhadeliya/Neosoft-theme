@@ -12,9 +12,66 @@
     "main": {
       "type": "hello-world",
       "settings": {}
+    },
+    "custom_slider_gn9hac": {
+      "type": "custom-slider",
+      "blocks": {
+        "slide_wiLpN7": {
+          "type": "slide",
+          "settings": {
+            "background_image": "shopify://shop_images/SM322305.png",
+            "heading": "Adding zing to your vital nutrition",
+            "subtext": "Sugar-free • All-natural • Expert-formulated • GMP certified",
+            "button_text": "Know More",
+            "button_link": ""
+          }
+        },
+        "slide_nmdXJD": {
+          "type": "slide",
+          "settings": {
+            "background_image": "shopify://shop_images/SM322305.png",
+            "heading": "Adding zing to your vital nutrition",
+            "subtext": "Sugar-free • All-natural • Expert-formulated • GMP certified",
+            "button_text": "Know More",
+            "button_link": ""
+          }
+        },
+        "slide_EiKCae": {
+          "type": "slide",
+          "settings": {
+            "background_image": "shopify://shop_images/SM322305.png",
+            "heading": "Adding zing to your vital nutrition",
+            "subtext": "Sugar-free • All-natural • Expert-formulated • GMP certified",
+            "button_text": "Know More",
+            "button_link": ""
+          }
+        },
+        "slide_xwtD7g": {
+          "type": "slide",
+          "settings": {
+            "background_image": "shopify://shop_images/SM322305.png",
+            "heading": "Adding zing to your vital nutrition",
+            "subtext": "Sugar-free • All-natural • Expert-formulated • GMP certified",
+            "button_text": "Know More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_wiLpN7",
+        "slide_nmdXJD",
+        "slide_EiKCae",
+        "slide_xwtD7g"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#000000"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "custom_slider_gn9hac"
   ]
 }

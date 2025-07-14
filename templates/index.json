@@ -164,13 +164,21 @@
             "product": "omega-3-fish-oil-soft-gels",
             "thumbnail": "shopify://shop_images/istockphoto-1303366483-612x612_1.png"
           }
+        },
+        "product_card_t8RmBp": {
+          "type": "product_card",
+          "settings": {
+            "product": "omega-3-fish-oil-soft-gels",
+            "thumbnail": "shopify://shop_images/istockphoto-1303366483-612x612_1.png"
+          }
         }
       },
       "block_order": [
         "product_card_KK7VdG",
         "product_card_4rpbNK",
         "product_card_GTcQzh",
-        "product_card_KELw7j"
+        "product_card_KELw7j",
+        "product_card_t8RmBp"
       ],
       "name": "card-video",
       "settings": {

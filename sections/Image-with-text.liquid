@@ -56,7 +56,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  background-color: #f4f6f5;
+  background-color: transparent; /* ❌ Removed background */
   padding: 40px 20px;
   gap: 20px;
 }
@@ -98,6 +98,10 @@
   margin: 0;
 }
 
+.giving-back-content {
+  text-align: left; /* ✅ Force left-align */
+}
+
 .giving-back-content p {
   font-size: 16px;
   color: #333;
@@ -110,7 +114,7 @@
   color: #000;
 }
 
-/* ✅ Mobile View */
+/* ✅ Mobile View Fixes */
 @media (max-width: 768px) {
   .giving-back-section,
   .giving-back-section.reverse {
@@ -124,8 +128,8 @@
   }
 
   .giving-back-heading {
-    flex-direction: row;
-    align-items: center;
+    flex-direction: row-reverse; /* ✅ Icon on right */
+    justify-content: space-between;
   }
 
   .giving-back-heading img {
@@ -135,6 +139,10 @@
 
   .giving-back-heading h2 {
     font-size: 22px;
+  }
+
+  .giving-back-content {
+    text-align: left; /* ✅ Left align all text */
   }
 
   .giving-back-content p {

@@ -1,10 +1,9 @@
-
 <style>
 .giving-back-section {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: center;
+  align-items: stretch; /* ✅ Makes both sides equal height */
   justify-content: center;
   background-color: transparent;
   padding: 40px 20px;
@@ -20,11 +19,22 @@
   flex: 1 1 50%;
   max-width: 50%;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .giving-back-image img {
   width: 100%;
   height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.giving-back-content {
+  background-color: #f4f4f4; /* ✅ Background color for text area */
+  text-align: left;
+  padding: 40px 30px;
   border-radius: 8px;
 }
 
@@ -48,10 +58,6 @@
   margin: 0;
 }
 
-.giving-back-content {
-  text-align: left;
-}
-
 .giving-back-content p {
   font-size: 16px;
   color: #333;
@@ -59,11 +65,12 @@
   margin-bottom: 15px;
 }
 
-.giving-back-content .highlight {
+.giving-back-content .highlight-text {
   font-weight: 600;
   color: #000;
 }
 
+/* ✅ Mobile Responsive */
 @media (max-width: 768px) {
   .giving-back-section {
     flex-direction: column !important;
@@ -75,8 +82,14 @@
     padding: 10px;
   }
 
+  .giving-back-content {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 30px 20px;
+  }
+
   .giving-back-heading {
-    flex-direction: row-reverse;
+    flex-direction: row-reverse; /* Icon on right */
     justify-content: space-between;
   }
 
@@ -89,10 +102,6 @@
     font-size: 22px;
   }
 
-  .giving-back-content {
-    text-align: left;
-  }
-
   .giving-back-content p {
     font-size: 15px;
   }
@@ -103,13 +112,15 @@
   <div class="giving-back-image">
     {% if section.settings.section_image != blank %}
       <img src="{{ section.settings.section_image | image_url: width: 800 }}" alt="Main Section Image">
+    {% else %}
+      <img src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder.png" alt="Placeholder Image">
     {% endif %}
   </div>
 
   <div class="giving-back-content">
     <div class="giving-back-heading">
       <h2>{{ section.settings.heading }}</h2>
-       {% if section.settings.icon_image != blank %}
+      {% if section.settings.icon_image != blank %}
         <img src="{{ section.settings.icon_image | image_url: width: 64 }}" alt="Icon">
       {% endif %}
     </div>

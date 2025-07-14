@@ -57,7 +57,7 @@
       ],
       "name": "Hero Slider",
       "settings": {
-        "background_color": "#ffffff",
+        "background_color": "rgba(0,0,0,0)",
         "text_color": "#000000"
       }
     }

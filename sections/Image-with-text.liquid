@@ -1,6 +1,111 @@
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Image-with-text",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "section_image",
+      "label": "Section Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Giving back to the community"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph",
+      "label": "Paragraph Text",
+      "default": "At Zingavita, we are dedicated to advancing quality education and healthcare..."
+    },
+    {
+      "type": "textarea",
+      "id": "highlight_text",
+      "label": "Highlighted Text",
+      "default": "As part of our commitment, Zingavita pledges 1% of its revenue to support..."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image-with-text",
+      "category": "Custom Sections"
+    }
+  ]
+}
 {% endschema %}
+
+<style>
+.giving-back-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f6f5;
+  padding: 40px 20px;
+}
+.giving-back-section.reverse {
+  flex-direction: row-reverse;
+}
+.giving-back-image,
+.giving-back-content {
+  flex: 1 1 50%;
+  max-width: 50%;
+  padding: 20px;
+}
+.giving-back-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.giving-back-content h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 15px;
+}
+.giving-back-content p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+.giving-back-content .highlight {
+  font-weight: 600;
+  color: #000;
+}
+@media (max-width: 768px) {
+  .giving-back-section,
+  .giving-back-section.reverse {
+    flex-direction: column;
+  }
+  .giving-back-image,
+  .giving-back-content {
+    max-width: 100%;
+    padding: 10px;
+  }
+}
+</style>
+
+<div class="giving-back-section {% if section.settings.image_position == 'right' %}reverse{% endif %}">
+  <div class="giving-back-image">
+    {% if section.settings.section_image != blank %}
+      <img src="{{ section.settings.section_image | image_url: width: 800 }}" alt="Giving Back Image">
+    {% endif %}
+  </div>
+  <div class="giving-back-content">
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.paragraph }}</p>
+    <p class="highlight">{{ section.settings.highlight_text }}</p>
+  </div>
+</div>

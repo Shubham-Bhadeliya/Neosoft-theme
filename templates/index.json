@@ -112,13 +112,21 @@
             "image": "shopify://shop_images/Supplemnets.avif",
             "title": "Supplements"
           }
+        },
+        "item_8PmBMK": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Supplemnets.avif",
+            "title": "Supplements"
+          }
         }
       },
       "block_order": [
         "item_mFnY9H",
         "item_jzGC4n",
         "item_aQW9Lb",
-        "item_xFrtqt"
+        "item_xFrtqt",
+        "item_8PmBMK"
       ],
       "name": "featured-collection-zing",
       "settings": {

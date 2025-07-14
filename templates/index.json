@@ -166,12 +166,33 @@
       ],
       "name": "Feature Bar",
       "settings": {}
+    },
+    "card_video_CrjQzd": {
+      "type": "card-video",
+      "blocks": {
+        "product_card_KK7VdG": {
+          "type": "product_card",
+          "settings": {
+            "product": "omega-3-fish-oil-soft-gels",
+            "thumbnail": "shopify://shop_images/istockphoto-1303366483-612x612_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "product_card_KK7VdG"
+      ],
+      "name": "card-video",
+      "settings": {
+        "heading": "Add health to your cart",
+        "subheading": "Explore our top-selling nutritional supplements, simplifying the path to a healthier lifestyle"
+      }
     }
   },
   "order": [
     "main",
     "custom_slider_QtrrwT",
     "featured_collection_zing_yL9zVt",
-    "feature_bar_fMQrkf"
+    "feature_bar_fMQrkf",
+    "card_video_CrjQzd"
   ]
 }

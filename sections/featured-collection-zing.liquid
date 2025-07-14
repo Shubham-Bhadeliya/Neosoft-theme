@@ -1,6 +1,233 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% comment %}
+  Final version of "Find Your Zing" slider section — perfect match with two pink arrows
+{% endcomment %}
+
+<section class="zing-slider-section">
+  <div class="contain">
+    {% if section.settings.main_heading != blank %}
+      <h2 class="zing-main-heading">{{ section.settings.main_heading }}</h2>
+    {% endif %}
+    {% if section.settings.subheading != blank %}
+      <p class="zing-subheading">{{ section.settings.subheading }}</p>
+    {% endif %}
+
+    <div class="zing-slider-wrapper">
+      <!-- Arrows Top Right -->
+      <div class="zing-slider-arrows">
+  <!-- Left Play-style Arrow -->
+  <button class="zing-arrow-btn zing-prev" aria-label="Previous">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+      <path d="M15 18L9 12l6-6v12z" />
+    </svg>
+  </button>
+
+  <!-- Right Play-style Arrow -->
+  <button class="zing-arrow-btn zing-next" aria-label="Next">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+      <path d="M9 6l6 6-6 6V6z" />
+    </svg>
+  </button>
+</div>
+
+
+      <!-- Swiper Slider -->
+      <div class="zing-slider swiper">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="swiper-slide zing-card">
+              <div class="zing-card-inner">
+                {% if block.settings.image %}
+                  <div class="zing-image-wrap">
+                    <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.title | escape }}" loading="lazy" />
+                  </div>
+                {% endif %}
+                <p class="zing-card-title">{{ block.settings.title }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Swiper JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    new Swiper(".zing-slider", {
+      slidesPerView: 2,
+      spaceBetween: 36,
+      navigation: {
+        nextEl: ".zing-next",
+        prevEl: ".zing-prev"
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 4,
+        },
+        1024: {
+          slidesPerView: 4.5,
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  .zing-slider-section {
+    background: #fff;
   }
+
+  .zing-main-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+
+  .zing-subheading {
+   font-size: 16px;
+    color: #000;
+    margin-bottom: 0px;
+    font-weight: 400;
+  }
+
+  .zing-slider-wrapper {
+    position: relative;
+  }
+
+  .zing-slider {
+    overflow: hidden;
+  }
+
+  .zing-card {
+    width: auto;
+  }
+
+  .zing-card-inner {
+    text-align: center;
+  }
+
+  .zing-image-wrap {
+    padding: 12px;
+    border-radius: 20px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .zing-image-wrap img {
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 16px;
+  }
+
+  .zing-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color:black;
+  }
+  .zing-arrow-btn {
+    background-color: #f45ca5;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .zing-arrow-btn:hover {
+    background-color: #e02e6d;
+  }
+
+  .zing-arrow-btn svg {
+    display: block;
+  }
+
+  /* Prevent default Swiper arrows from showing */
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none !important;
+  }
+  .zing-slider-section .contain{
+    margin-left:70px;
+  }
+  .find-your-zing{
+    margin-top:100px;
+    margin-bottom:100px;
+  }
+  .find-your-zing .zing-main-heading{
+    margin-top:0px;
+    margin-bottom:29px;
+  }
+  .find-your-zing .zing-slider-wrapper .zing-slider-arrows{
+    position: absolute;
+    top: -59px;
+    right: 70px;
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+  }
+  .find-your-zing .zing-slider-wrapper .zing-card-inner .zing-image-wrap{
+    padding:0;
+    margin:0;
+    max-height:213px;
+    height:100%;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "featured-collection-zing",
+  "tag": "section",
+  "class": "find-your-zing",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "Find your zing"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Kids"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Zing Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "Gummies"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "featured-collection-zing",
+      "category": "Custom"
+    }
+  ]
+}
 {% endschema %}

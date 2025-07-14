@@ -13,70 +13,6 @@
       "type": "hello-world",
       "settings": {}
     },
-    "custom_slider_gn9hac": {
-      "type": "custom-slider",
-      "blocks": {
-        "slide_wiLpN7": {
-          "type": "slide",
-          "settings": {
-            "background_image_desktop": "shopify://shop_images/SM322305.png",
-            "background_image_mobile": "shopify://shop_images/SM322305.png",
-            "heading": "Adding zing to your vital nutrition",
-            "feature_icon_1": "shopify://shop_images/shipp-scree-removebg-preview_1092423d-67c1-466d-80a6-c9cd97867ff5.png",
-            "feature_text_1": "Sugar-free",
-            "feature_icon_2": "shopify://shop_images/shipp-scree-removebg-preview.png",
-            "feature_text_2": "All-natural",
-            "feature_icon_3": "shopify://shop_images/shipp-scree-removebg-preview_1092423d-67c1-466d-80a6-c9cd97867ff5.png",
-            "feature_text_3": "Formulated by experts",
-            "feature_icon_4": "shopify://shop_images/shipp-scree-removebg-preview.png",
-            "feature_text_4": "GMP Certified",
-            "subtext": "",
-            "button_text": "Know More",
-            "button_link": ""
-          }
-        },
-        "slide_Vz9FY4": {
-          "type": "slide",
-          "settings": {
-            "background_image_desktop": "shopify://shop_images/SM322305.png",
-            "background_image_mobile": "shopify://shop_images/SM322305.png",
-            "heading": "Adding zing to your vital nutrition",
-            "feature_text_1": "Sugar-free",
-            "feature_text_2": "All-natural",
-            "feature_text_3": "Formulated by experts",
-            "feature_text_4": "GMP Certified",
-            "subtext": "Sugar-free • All-natural • Expert-formulated • GMP certified",
-            "button_text": "Know More",
-            "button_link": ""
-          }
-        },
-        "slide_8KWxbY": {
-          "type": "slide",
-          "settings": {
-            "background_image_desktop": "shopify://shop_images/SM322305.png",
-            "background_image_mobile": "shopify://shop_images/SM322305.png",
-            "heading": "Adding zing to your vital nutrition",
-            "feature_text_1": "Sugar-free",
-            "feature_text_2": "All-natural",
-            "feature_text_3": "Formulated by experts",
-            "feature_text_4": "GMP Certified",
-            "subtext": "Sugar-free • All-natural • Expert-formulated • GMP certified",
-            "button_text": "Know More",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "slide_wiLpN7",
-        "slide_Vz9FY4",
-        "slide_8KWxbY"
-      ],
-      "name": "Hero Slider",
-      "settings": {
-        "background_color": "rgba(0,0,0,0)",
-        "text_color": "#000000"
-      }
-    },
     "feature_bar_fMQrkf": {
       "type": "feature-bar",
       "blocks": {
@@ -109,11 +45,39 @@
       ],
       "name": "Feature Bar",
       "settings": {}
+    },
+    "custom_slider_QtrrwT": {
+      "type": "custom-slider",
+      "blocks": {
+        "slide_fJzMYX": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/SM322305.png",
+            "mobile_image": "shopify://shop_images/SM322305.png",
+            "heading": "Slide Heading",
+            "subheading": "",
+            "label_1": "",
+            "label_2": "",
+            "label_3": "",
+            "label_4": "",
+            "button_label": "Learn More",
+            "button_link": "",
+            "scroll_text": "Scroll Down"
+          }
+        }
+      },
+      "block_order": [
+        "slide_fJzMYX"
+      ],
+      "name": "Hero Swiper Slider",
+      "settings": {
+        "desktop_alignment": "center-center"
+      }
     }
   },
   "order": [
     "main",
-    "custom_slider_gn9hac",
-    "feature_bar_fMQrkf"
+    "feature_bar_fMQrkf",
+    "custom_slider_QtrrwT"
   ]
 }

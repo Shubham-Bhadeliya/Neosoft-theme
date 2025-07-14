@@ -60,10 +60,44 @@
         "background_color": "rgba(0,0,0,0)",
         "text_color": "#000000"
       }
+    },
+    "feature_bar_fMQrkf": {
+      "type": "feature-bar",
+      "blocks": {
+        "feature_6Rtdkx": {
+          "type": "feature",
+          "settings": {
+            "heading": "Cash On Delivery",
+            "subtext": "For purchase of ₹349/- and more"
+          }
+        },
+        "feature_FPemLY": {
+          "type": "feature",
+          "settings": {
+            "heading": "Free Shipping",
+            "subtext": "For purchase of ₹399/- and more"
+          }
+        },
+        "feature_Ufb6Wa": {
+          "type": "feature",
+          "settings": {
+            "heading": "24/7 Customer Support",
+            "subtext": "For purchase of ₹399/- and more"
+          }
+        }
+      },
+      "block_order": [
+        "feature_6Rtdkx",
+        "feature_FPemLY",
+        "feature_Ufb6Wa"
+      ],
+      "name": "Feature Bar",
+      "settings": {}
     }
   },
   "order": [
     "main",
-    "custom_slider_gn9hac"
+    "custom_slider_gn9hac",
+    "feature_bar_fMQrkf"
   ]
 }

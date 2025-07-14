@@ -221,6 +221,16 @@
       ],
       "name": "Feature Bar",
       "settings": {}
+    },
+    "image_with_text_37Kr3D": {
+      "type": "Image-with-text",
+      "name": "Image-with-text",
+      "settings": {
+        "image_position": "left",
+        "heading": "Giving back to the community",
+        "paragraph": "At Zingavita, we are dedicated to advancing quality education and healthcare...",
+        "highlight_text": "As part of our commitment, Zingavita pledges 1% of its revenue to support..."
+      }
     }
   },
   "order": [
@@ -228,6 +238,7 @@
     "custom_slider_QtrrwT",
     "featured_collection_zing_yL9zVt",
     "card_video_CrjQzd",
-    "feature_bar_fMQrkf"
+    "feature_bar_fMQrkf",
+    "image_with_text_37Kr3D"
   ]
 }

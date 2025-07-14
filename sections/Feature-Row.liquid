@@ -1,6 +1,39 @@
+<!-- sections/features-row.liquid -->
+<div class="bg-[#d1e1ef] py-10">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center">
+    
+    <!-- Feature 1: Cash On Delivery -->
+    <div class="flex flex-col items-center space-y-3">
+      <img src="{{ 'icon-cod.png' | asset_url }}" alt="Cash on Delivery" class="w-12 h-12">
+      <h3 class="font-semibold text-lg text-gray-800">Cash On Delivery</h3>
+      <p class="text-sm text-gray-600">For purchase of ₹349/- and more</p>
+    </div>
+
+    <!-- Feature 2: Free Shipping -->
+    <div class="flex flex-col items-center space-y-3">
+      <img src="{{ 'icon-shipping.png' | asset_url }}" alt="Free Shipping" class="w-12 h-12">
+      <h3 class="font-semibold text-lg text-gray-800">Free Shipping</h3>
+      <p class="text-sm text-gray-600">For purchase of ₹399/- and more</p>
+    </div>
+
+    <!-- Feature 3: 24/7 Support -->
+    <div class="flex flex-col items-center space-y-3">
+      <img src="{{ 'icon-support.png' | asset_url }}" alt="24/7 Customer Support" class="w-12 h-12">
+      <h3 class="font-semibold text-lg text-gray-800">24/7 Customer Support</h3>
+      <p class="text-sm text-gray-600">For purchase of ₹399/- and more</p>
+    </div>
+
+  </div>
+</div>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Feature Row",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Feature Row"
+    }
+  ]
+}
 {% endschema %}

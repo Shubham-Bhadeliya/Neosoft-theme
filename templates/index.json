@@ -111,7 +111,7 @@
       "name": "Hero Swiper Slider",
       "settings": {
         "star_icon": "shopify://shop_images/Path_30710_small_5bae3c21-1367-4a8f-820b-c69e3c525bf3.svg",
-        "desktop_alignment": "center-center"
+        "desktop_alignment": "top-left"
       }
     }
   },
